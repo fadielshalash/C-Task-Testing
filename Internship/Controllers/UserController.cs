@@ -35,18 +35,19 @@ namespace Internship.Controllers
         //}
 
         [HttpGet("{id}")]
-        public  async Task<User> GetUser(int id)
+        public  async Task<UserViewModel> GetUser(int id)
         {
-            return await MyUser.GetByid(id);
-            //UserVeiwModel UVM = _mapper.Map<UserVeiwModel>(MyUser.GetByid(id));
-            //return Ok(UVM);
+            
+            UserViewModel UVM =  _mapper.Map<UserViewModel>(await MyUser.GetById(id));
+            return UVM;
         }
         
 
         [HttpGet]
-        public async Task<IEnumerable<User>> GetAllUsers()
+        public async Task<IEnumerable<UserViewModel>> GetAllUsers()
         {
-            return await MyUser.GetAll();
+            var u = _mapper.Map<IEnumerable<UserViewModel>>(await MyUser.GetAll());
+            return u;
         }
 
         [HttpDelete]
@@ -61,10 +62,18 @@ namespace Internship.Controllers
            await MyUser.AddObj(obj);
         }
 
+        [HttpGet("{size}/{index}")]
+        public Task<IEnumerable<User>> GetPages(int size, int index)
+        {
+            return MyUser.GetPage(size, index);
+        }
 
+        [HttpGet("withposts/{id}")]
+        public Task<User> GetUserWithPosts(int id)
+        {
 
-
-
+            return MyUser.GetUserWithPosts(id);
+        }
 
 
 
@@ -86,16 +95,7 @@ namespace Internship.Controllers
         //    MyUser.AddObj(user);
         //}
 
-        //[HttpGet("{size}/{index}")]
-        //public List<User> getpages(int size,int index)
-        //{
-        //    return dbContext.Users.Take(size).Skip(size * (index - 1)).ToList();
-        //}
-        //[HttpGet("getuserwithpostby/{id}")]
-        //public User getUser(int id)
-        //{
-        //    return dbContext.Users.Include(x => x.Posts).FirstOrDefault(x => x.id == id);
-        //}
+
 
 
 

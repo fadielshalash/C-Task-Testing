@@ -26,17 +26,17 @@ namespace Internship.Controllers
 
 
         [HttpGet("{id}")]
-        public async Task<Post> GetPost(int id)
+        public async Task<PostViewModel> GetPost(int id)
         {
-            return await MyPost.GetByid(id);
-           
+            return _mapper.Map<PostViewModel>(await MyPost.GetById(id));
+
         }
 
 
         [HttpGet]
-        public async Task<IEnumerable<Post>> GetAllPosts()
+        public async Task<IEnumerable<PostViewModel>> GetAllPosts()
         {
-            return await MyPost.GetAll();
+            return _mapper.Map<List<Post>, List<PostViewModel>>((List<Post>)await MyPost.GetAll());
         }
 
         [HttpDelete]

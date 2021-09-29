@@ -21,9 +21,9 @@ namespace Internship.Moudels
 
             serv.AddScoped<IPostRep, PostRepo>();
 
-            serv.AddAutoMapper(typeof(User), typeof(UserVeiwModel));
+            serv.AddAutoMapper(typeof(User), typeof(UserViewModel));
 
-            serv.AddAutoMapper(typeof(Post), typeof(PostVeiwModel));
+            serv.AddAutoMapper(typeof(Post), typeof(PostViewModel));
             
             serv.AddAutoMapper(typeof(Startup));
             

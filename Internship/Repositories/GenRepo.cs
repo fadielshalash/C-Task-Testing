@@ -33,11 +33,15 @@ namespace Internship.Moudels
             
         }
 
-        public async Task<T> GetByid(int id)
+        public async Task<T> GetById(int id)
         {
             return await dbcontext.Set<T>().FirstOrDefaultAsync(obj =>obj.id.Equals(id));
         }
 
-       
+        public async Task<IEnumerable<T>> GetPage(int size, int index)
+        {
+            return dbcontext.Set<T>().Take(size).ToList().Skip(size * (index - 1));
+        }
+
     }
 }

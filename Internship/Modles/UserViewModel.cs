@@ -5,10 +5,9 @@ using System.Threading.Tasks;
 
 namespace Internship.Moudels
 {
-    public class PostVeiwModel
+    public class UserViewModel
     {
         public int id { get; set; }
-        public string title { get; set; }
-        public string body { get; set; }
+        public string name { get; set; }
     }
 }

@@ -5,9 +5,8 @@ using System.Threading.Tasks;
 
 namespace Internship.Moudels
 {
-    public class UserVeiwModel
+    public interface IuserRepo : IgenRepo<User>
     {
-        public int id { get; set; }
-        public string name { get; set; }
+        Task<User> GetUserWithPosts(int id);
     }
 }

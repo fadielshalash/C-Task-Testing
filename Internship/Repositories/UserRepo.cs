@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,6 +13,9 @@ namespace Internship.Moudels
         {
             this.dbcontext = appContext;
         }
-
+        public async Task<User> GetUserWithPosts(int id)
+        {
+            return  dbcontext.Users.Include(x => x.Posts).FirstOrDefault(p => p.id == id);
+        }
     }
 }

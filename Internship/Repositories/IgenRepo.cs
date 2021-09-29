@@ -8,8 +8,9 @@ namespace Internship.Moudels
     public interface IgenRepo<T> where T:class,IBM
     {
         Task<IEnumerable<T>> GetAll();
-         Task<T> GetByid(int id);
+         Task<T> GetById(int id);
         Task DeleteByid(int id);
         Task AddObj(T obj);
+        Task<IEnumerable<T>> GetPage(int size, int index);
     }
 }
