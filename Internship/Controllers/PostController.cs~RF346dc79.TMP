@@ -1,0 +1,50 @@
+﻿using Internship.Moudels;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace Internship.Controllers
+{
+    public class PostController : Controller
+    {
+        [Controller]
+        [Route("api/[controller]")]
+        [ApiController]
+        
+
+            IPostRep MyPost = null;
+
+            public PostController(IPostRep MyPost)
+            {
+               this. MyPost = MyPost;
+            }
+
+            [HttpGet]
+            public IEnumerable<Post> GetAllPosts()
+            {
+                return MyPost.GetAll();
+
+            }
+
+            [HttpGet("{id}")]
+            public Post GetPost(int id)
+            {
+                return MyPost.GetByid(id);
+            }
+
+            [HttpDelete("{id}")]
+            public  void DeletePost(int id)
+            {
+                MyPost.DeleteByid(id);
+
+            }
+
+            [HttpPost]
+            public void AddPost([FromBody] Post post)
+            {
+                MyPost.AddObj(post);
+            }
+        }
+    }
